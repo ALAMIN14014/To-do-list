@@ -1,0 +1,43 @@
+{% extends 'star/base.html'%}
+
+{%block child_block%}
+
+<nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+  <a class="navbar-brand" href="#">Todo Application </a>
+</nav>
+<div class="container">
+  <div class="row">
+    <div class="col-mid-6">
+      <div class="card card-body " >
+        <h1>Add Task Here</h1>
+        <form method="POST">
+          {% csrf_token %}
+          {{form.as_p}}
+          <input type="submit" value="Add Task" class="btn btn-primary btn-md" name="context">
+        </form>
+<hr>
+<ul class="list-group" style="width: 40rem">
+  {% for tas in tasks%}
+
+  <li class="list-group-item">{{tas.task}}
+    <div class="float-right">
+      <a type="button" class="btn btn-danger" href="delete/{{tas.id}}/">Delete</a>
+    </div>
+  </li>
+  {%endfor%}
+
+
+</ul>
+
+
+
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+</div>
+{%endblock%}
